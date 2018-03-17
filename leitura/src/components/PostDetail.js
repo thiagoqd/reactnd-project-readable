@@ -6,8 +6,10 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import VotePost from './VotePost.js'
 import EditPost from './EditPost.js'
+import DeletePost from './DeletePost.js'
 import NotFound from './NotFound.js'
 import CommentList from './CommentList.js'
+import AddComment from './AddComment.js'
 
 
 
@@ -59,8 +61,9 @@ class PostInfo extends Component {
               <p>{this.props.post.commentCount}</p>
               <VotePost post={this.props.post}/>
               <EditPost post={this.props.post}/>
+              <DeletePost post={this.props.post}/>
               <Link to="/">Back</Link>
-
+              <AddComment post={this.props.post}/>
               <CommentList post={this.props.post} />
 
         </div>

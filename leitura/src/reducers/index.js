@@ -8,7 +8,12 @@ import {
   VOTE_POST,
   DELETE_POST,
   GET_COMMENT_POST,
-  EDIT_POST
+  EDIT_POST,
+  VOTE_COMMENT,
+  DELETE_COMMENT,
+  ADD_COMMENT,
+  EDIT_COMMENT,
+  SORT_TYPE
 } from '../actions'
 
 
@@ -21,7 +26,7 @@ function posts(state = [], action) {
       ]
     case GET_ALL_POSTS:
       return action.posts
-    
+
     case GET_DETAIL_POST:
       return state.map(
         (post) => post.id === action.detailPost.id ? action.detailPost : post )
@@ -59,7 +64,20 @@ function categories(state = [], action) {
   }
 }
 
+function sortType(state = [], action) {
+
+  switch (action.type) {
+
+    case SORT_TYPE:
+      return action.sortType
+
+    default:
+      return state
+  }
+}
+
 function comments(state = [], action) {
+
 
   switch (action.type) {
 
@@ -68,6 +86,46 @@ function comments(state = [], action) {
         ...state,
         [action.postId]: action.comments
       }
+
+    case VOTE_COMMENT:
+      return {
+        ...state,
+        [action.comment.parentId]: state[action.comment.parentId].map((comment) => comment.id === action.comment.id
+        ? action.comment
+        : comment)
+      }
+
+      case ADD_COMMENT:
+        return {
+          ...state,
+          [action.comment.parentId]: [
+              ...state[action.comment.parentId],
+              action.comment
+            ]
+        }
+
+      case EDIT_COMMENT:
+        return {
+          ...state,
+          [action.editedComment.parentId]: 
+            state[action.editedComment.parentId].map((comment)=> comment.id === action.editedComment.id
+            ? {...comment,
+              body: action.editedComment.body,
+              timestamp: action.editedComment.timestamp}
+            : comment
+          )
+          
+        }
+        
+        
+
+      case DELETE_COMMENT:
+      return {
+        ...state,
+        [action.parentId]: state[action.parentId].filter((comment) => comment.id !== action.commentId)
+      }
+      
+      
 
     default:
       return state
@@ -78,5 +136,6 @@ function comments(state = [], action) {
 export default combineReducers({
   categories,
   posts,
-  comments
+  comments,
+  sortType
 })

@@ -2,19 +2,15 @@ import React, { Component } from 'react';
 import { Link  } from 'react-router-dom';
 import { Header } from 'semantic-ui-react'
 import { Grid, Segment } from 'semantic-ui-react'
-import {  List, Button } from 'semantic-ui-react'
-import { sendVotePost } from '../actions'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import {  List } from 'semantic-ui-react'
 import DeletePost from './DeletePost.js';
 import EditPost from './EditPost.js';
+import VotePost from './VotePost.js';
 
 
 class Post extends Component {
   
-    postVoting = (id, option) => {
-      this.props.sendVotePost(id, option);
-    }
+
 
     render() {
       
@@ -54,11 +50,7 @@ class Post extends Component {
                   {this.props.post.commentCount}
                 </Grid.Column>
                 <Grid.Column width={10}>
-                <Button.Group>
-                  <Button onClick={() => this.postVoting(this.props.post.id, "downVote")} negative>-1</Button>
-                  <Button.Or />
-                  <Button onClick={() => this.postVoting(this.props.post.id, "upVote")}  positive>+1</Button>
-                </Button.Group>
+                  <VotePost post={this.props.post}/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -71,19 +63,5 @@ class Post extends Component {
     
   }
 
-  const mapStateToProps = (state) => {
-    return {
-      posts: state.posts
-    }
-  }
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      sendVotePost: (id,option) => dispatch(sendVotePost(id,option))
-    }
-  }
 
-  export default withRouter(connect(
-    mapStateToProps,
-     mapDispatchToProps
-   )(Post));
+  export default Post;

@@ -8,6 +8,11 @@ export const VOTE_POST = 'VOTE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const GET_COMMENT_POST = 'GET_COMMENT_POST'
 export const EDIT_POST = 'EDIT_POST'
+export const VOTE_COMMENT = 'VOTE_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const SORT_TYPE = 'SORT_TYPE'
 
 
 
@@ -214,5 +219,140 @@ export const loadCommentPost = (postId) => {
   })
   .then(comments => dispatch(getCommentPost(postId, comments)))
   .catch( error => showError(error));
+  }
+}
+
+
+
+
+
+
+const voteComment = (comment) => {
+  return {
+    type: VOTE_COMMENT,
+    comment
+  }
+}
+export const sendVoteComment = (commentId, option) => {
+  return dispatch => {
+  fetch(`${api}comments/${commentId}`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      option: option
+     }),
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(comment => dispatch(voteComment(comment)))
+  .catch( error => showError(error));
+  }
+}
+
+
+
+
+
+
+
+
+const deleteComment = (commentId, parentId) => {
+  return {
+    type: DELETE_COMMENT,
+    commentId,
+    parentId
+  }
+}
+export const sendDeleteComment = (comment) => {
+  return dispatch => {
+  fetch(`${api}comments/${comment.id}`, {
+    method: 'DELETE',
+    headers: headers,
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(() => dispatch(deleteComment(comment.id, comment.parentId )))
+  .then(() => dispatch(loadDetailPost(comment.parentId )))
+  .catch( error => showError(error));
+  }
+}
+
+
+
+
+
+
+const addComment = (comment) => {
+  return {
+    type: ADD_COMMENT,
+    comment
+  }
+}
+export const sendComment = (comment) => {
+  return dispatch => {
+  fetch(`${api}comments`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      id: comment.id,
+      timestamp: comment.timestamp,
+      body: comment.body,
+      author: comment.author,
+      parentId: comment.parentId,
+     }),
+  })
+  .then(res => {
+    if (!res.ok) {
+      throw res
+    } else  return res.json()
+  })
+  .then(comment => dispatch(addComment(comment)))
+  .then(() => dispatch(loadDetailPost(comment.parentId )))
+  .catch( error => showError(error));
+  }
+}
+
+
+
+
+
+
+
+const editComment = (editedComment) => {
+  return {
+    type: EDIT_COMMENT,
+    editedComment
+  }
+}
+export const putEditComment = (comment) => {
+  return dispatch => {
+    fetch(`${ api }comments/${comment.id}`, {
+      method: 'PUT',
+      headers: headers,
+      body: JSON.stringify({
+        timestamp: comment.timestamp,
+        body: comment.body
+       })
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw res
+        } else  return res.json()
+      })
+    .then(comment => dispatch(editComment(comment)))
+    .catch( error => showError(error));
+  }
+}
+
+export const sortPost = (sortType) => {
+  return {
+    type: SORT_TYPE,
+    sortType
   }
 }
