@@ -8,6 +8,18 @@ import { getGuid } from '../utils/scripts'
 
 class AddPost extends Component {
   
+  state = {
+    showModal: false
+  }
+ 
+  closeModal = () => {
+    this.setState({ showModal: false })
+  }
+
+  openModal = () => {
+    this.setState({ showModal: true })
+  }
+
     handleSubmit (e) { 
 
       const data = {
@@ -22,6 +34,7 @@ class AddPost extends Component {
         console.log(data)
         
       this.props.addPost(data);
+      this.closeModal()
     
     }
 
@@ -31,14 +44,20 @@ class AddPost extends Component {
 
     render() {
       
+      const {showModal} = this.state
+
       //ver melhor maneira de fazer isso
       const options = this.props.categories.reduce(function(categories, category, i) {
         categories[i] = { key: Math.floor((1 + Math.random()) * 0x10000), text: category.name, value: category.name };
         return categories;
       }, []);
 
+     
       return (
-        <Modal trigger={<div>Add Post</div>} closeIcon>
+        <div>
+
+
+        <Modal onClose={this.closeModal} open={showModal}  trigger={<div className="menu" onClick={this.openModal}>Add Post</div>} closeIcon>
           <Header icon='add circle' content='Add New Post' />
           <Modal.Content>
             <Form  onSubmit={(e) => this.handleSubmit(e.target)}>
@@ -52,7 +71,7 @@ class AddPost extends Component {
             </Form>
           </Modal.Content>
         </Modal>
-
+        </div>
         
       );
     }

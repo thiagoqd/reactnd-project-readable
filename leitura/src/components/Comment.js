@@ -11,13 +11,13 @@ class Comment extends Component {
     render() {
       
       return (
-        <Segment>
+        <Segment className="comment">
           <Grid columns={3} divided textAlign="center">
               <Grid.Row>
-                <Grid.Column>
+                <Grid.Column width="6">
                   {this.props.comment.body}
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column width="5">
                 <List>
                   <List.Item>
                     <List.Header>Author</List.Header>
@@ -30,12 +30,16 @@ class Comment extends Component {
                   
                 </List>
                 </Grid.Column>
-                <Grid.Column>
+                <Grid.Column width="5">
+                  <Grid.Row verticalAlign="top">
+                    <div className="commentOptions">
+                      <span><EditComment post={this.props.post} comment={this.props.comment}/></span>
+                      <span><DeleteComment comment={this.props.comment} post={this.props.post}/></span>
+                    </div>
+                  </Grid.Row>
+                  <Grid.Row verticalAlign="bottom">
                   <VoteComment comment={this.props.comment}/>
-                </Grid.Column>
-                <Grid.Column>
-                  <EditComment post={this.props.post} comment={this.props.comment}/>
-                  <DeleteComment comment={this.props.comment} post={this.props.post}/>
+                  </Grid.Row>
                 </Grid.Column>
               </Grid.Row>
             </Grid>

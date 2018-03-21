@@ -40,7 +40,7 @@ class EditPost extends Component {
 
       
       return (
-        <Modal onClose={this.closeModal} open={showModal}  trigger={<div onClick={this.openModal}>Edit Post</div>} closeIcon>
+        <Modal onClose={this.closeModal} open={showModal}  trigger={<div className="popup" onClick={this.openModal}>Edit Post</div>} closeIcon>
           <Header icon='edit' content='Edit Post' />
           <Modal.Content>
             <Form  onSubmit={(e) => this.handleSubmit(e.target)}>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Header, Modal} from 'semantic-ui-react'
+import { Form, Header, Modal, Button} from 'semantic-ui-react'
 import { sendComment } from '../actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -7,7 +7,19 @@ import { getGuid } from '../utils/scripts'
 
 
 class AddComment extends Component {
-  
+
+  state = {
+    showModal: false
+  }
+
+  closeModal = () => {
+    this.setState({ showModal: false })
+  }
+
+  openModal = () => {
+    this.setState({ showModal: true })
+  }
+
     handleSubmit (e) { 
 
       const data = {
@@ -19,16 +31,17 @@ class AddComment extends Component {
         }
         
       this.props.sendComment(data);
+      this.closeModal()
     
     }
 
 
     render() {
       
-  
+      const {showModal} = this.state
 
       return (
-        <Modal trigger={<div>Add Comment</div>} closeIcon>
+        <Modal onClose={this.closeModal} open={showModal}   trigger={<Button  onClick={this.openModal}>Add Comment</Button>} closeIcon>
           <Header icon='add circle' content='Add New Post' />
           <Modal.Content>
             <Form  onSubmit={(e) => this.handleSubmit(e.target)}>

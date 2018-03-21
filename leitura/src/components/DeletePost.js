@@ -17,7 +17,7 @@ class DeletePost extends Component {
       
 
       return (
-        <Modal trigger={<div>Delete Post</div>} closeIcon>
+        <Modal trigger={<div className="popup">Delete Post</div>} closeIcon>
           <Header icon='window close' content='Delete Close' />
           <Modal.Content>
             <Form onSubmit={(e) => this.handleSubmit(this.props.post.id)}>
@@ -30,7 +30,7 @@ class DeletePost extends Component {
       );
     }
     
-  }
+  } 
 
   const mapStateToProps = (state) => {
     return {

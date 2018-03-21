@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Header, Modal} from 'semantic-ui-react'
+import { Form, Header, Modal, Icon} from 'semantic-ui-react'
 import { sendDeleteComment } from '../actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -15,9 +15,9 @@ class DeleteComment extends Component {
 
     render() {
       
-
+ 
       return (
-        <Modal trigger={<div>Delete Comment</div>} closeIcon>
+        <Modal trigger={<div><Icon name="close"/></div>} closeIcon>
           <Header icon='window close' content='Delete Close' />
           <Modal.Content>
             <Form onSubmit={(e) => this.handleSubmit(this.props.comment)}>

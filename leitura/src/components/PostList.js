@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Post from './Post.js';
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Header } from 'semantic-ui-react'
 import { loadAllPosts, sortPost } from '../actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-
 
 
 
@@ -35,13 +34,19 @@ class PostList extends Component {
 
     return (
       
-      <div className="PostList">
- 
-        <div className="PostListHeader">
-          <p> Post List </p>
-          <Dropdown text='Order By...' options={options} onChange={(e) => this.handleChange(e)}  selection/>
+      <div className="postList">
+      <div className="list">
+        <div className="postListHeader">
+          <div className="titleDiv">
+                <Header as="h3" className="title">Post Lists</Header>
+          </div>
+          <div>
+            <Dropdown className="filter" text='Order By...' options={options} onChange={(e) => this.handleChange(e)}  selection/>   
+          </div>
         </div>
-        {postList}
+        
+          {postList}
+        </div>
       </div>
     );
   }

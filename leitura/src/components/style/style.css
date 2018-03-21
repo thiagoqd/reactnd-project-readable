@@ -1,0 +1,95 @@
+body {
+    background-color: #666B73 !important; 
+}
+
+.App {
+    background-color: #666B73 !important; 
+    width: 100%;   
+}
+
+.postListHeader {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+    margin-top: 1em;
+}
+
+.postListHeader .titleDiv {
+    text-align: center;
+    padding-top: 0.7em;
+}
+
+.postListHeader .filter {
+    background-color: #BAB5A4 !important;
+}
+
+
+.postList .list {
+    text-align: center;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 1em;
+}
+
+.postSegment {
+    background-color: #BAB5A4 !important;
+}
+
+
+.menu {
+    background-color: #1F252A !important;
+    color: white;
+}
+
+
+
+.menu a:visited{
+    color: white;
+}
+
+.postDetail {
+    padding-top: 2em;
+    text-align: center;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.postDetailBody {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+    padding-top: 2em;
+}
+
+.postDetailSegment {
+    background-color: #BAB5A4 !important;
+}
+
+
+.postDetailFooter {
+    display: inline-grid;
+    width: 100%;
+    grid-template-columns: 30% 20% 50%;
+    padding-top: 2em;
+}
+
+.commentList {
+    padding-top: 1em;
+}
+
+.popup {
+    color: white;
+}
+
+.comment {
+    background-color: #e9e7e2 !important;
+}
+.postDetailComment {
+    padding: 1em;
+    margin: 1em;
+}
+
+.commentOptions {
+    display: inline;
+
+}

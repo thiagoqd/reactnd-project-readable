@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Header, Modal} from 'semantic-ui-react'
+import { Form, Header, Modal, Icon} from 'semantic-ui-react'
 import { putEditComment } from '../actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -40,7 +40,7 @@ class EditComment extends Component {
 
       
       return (
-        <Modal onClose={this.closeModal} open={showModal}  trigger={<div onClick={this.openModal}>Edit Comment</div>} closeIcon>
+        <Modal onClose={this.closeModal} open={showModal}  trigger={<div onClick={this.openModal}><Icon name="edit"/></div>} closeIcon>
           <Header icon='edit' content='Edit Comment' />
           <Modal.Content>
             <Form  onSubmit={(e) => this.handleSubmit(e.target)}>

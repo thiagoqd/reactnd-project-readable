@@ -4,14 +4,14 @@ import './App.css';
 import PostList from './components/PostList.js';
 import MenuRoot from './components/MenuRoot.js';
 import PostDetail from './components/PostDetail.js';
-import Temp from './components/Temp.js';
-
+import './components/style/style.css';
 
 
 
 
 class App extends Component {
   render() {
+
 
     return (
       <div className="App">

@@ -15,12 +15,16 @@ class MenuRoot extends Component {
     };
   }
 
+  
 
 
 
   render() {
+
+ 
+
     return (
-      <div className="App">
+      <div className="menu">
         <Menu pointing secondary>
             <Menu.Item name='Home'>
             <Link to="/">Home</Link>  
@@ -28,9 +32,6 @@ class MenuRoot extends Component {
             <Menu.Item name='AddPost'>
               <AddPost />  
             </Menu.Item>
-            <Menu.Menu position='right'>
-            <Menu.Item name='logout'  />
-            </Menu.Menu>
         </Menu>
       </div>
     );

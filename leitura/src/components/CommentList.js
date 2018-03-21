@@ -16,7 +16,7 @@ class CommentList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="commentList">
           {
             this.props.comments &&
             Object.keys(this.props.comments).map((id)=>{
