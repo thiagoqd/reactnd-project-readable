@@ -90,6 +90,11 @@ body {
 }
 
 .commentOptions {
-    display: inline;
+    display: inline-grid;
+    text-align: right;
+    width: 40%;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 2em;
+
 
 }

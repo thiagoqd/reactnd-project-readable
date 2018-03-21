@@ -33,8 +33,8 @@ class Comment extends Component {
                 <Grid.Column width="5">
                   <Grid.Row verticalAlign="top">
                     <div className="commentOptions">
-                      <span><EditComment post={this.props.post} comment={this.props.comment}/></span>
-                      <span><DeleteComment comment={this.props.comment} post={this.props.post}/></span>
+                      <EditComment post={this.props.post} comment={this.props.comment}/>
+                      <DeleteComment comment={this.props.comment} post={this.props.post}/>
                     </div>
                   </Grid.Row>
                   <Grid.Row verticalAlign="bottom">
