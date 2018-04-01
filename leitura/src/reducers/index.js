@@ -28,8 +28,8 @@ function posts(state = [], action) {
       return action.posts
 
     case GET_DETAIL_POST:
-      return state.map(
-        (post) => post.id === action.detailPost.id ? action.detailPost : post )
+      return state === null ? action.post : state.map(
+        (post) => post.id === action.post.id ? action.post : post )
 
     case VOTE_POST:
       return state.map(

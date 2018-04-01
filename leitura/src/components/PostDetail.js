@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Header, Segment, Grid, Icon } from 'semantic-ui-react'
 import { Link  } from 'react-router-dom';
-import { loadDetailPost } from '../actions'
+import { loadAllPosts } from '../actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import VotePost from './VotePost.js'
@@ -14,16 +14,19 @@ import PostOptions from './PostOptions.js'
 
 class PostDetail extends Component {
 
+ 
   componentDidMount() {
-    this.props.match ? this.props.loadDetailPost(this.props.match.params.post_id) : null
-
-
+    this.props.loadAllPosts();
   }
 
 
     render() {
       
-      const post = this.props.posts ? this.props.posts.filter((post) => post.id === this.props.match.params.post_id)[0] : null
+
+      const post = [].concat(this.props.posts)
+      .filter((post) => this.props.match.params.post_id === post.id  )[0]
+
+      console.log("post: ", post)
 
       const content = post ? <PostInfo post={post}/> :
       <NotFound />
@@ -31,10 +34,7 @@ class PostDetail extends Component {
 
       return (
         <div className="postDetail">
-          { 
-            content
-            
-          }
+          {content}
         </div>
 
       );
@@ -45,7 +45,6 @@ class PostDetail extends Component {
    
 class PostInfo extends Component {
     render() {
-      
       return (
         <Segment className="postDetailSegment">
               
@@ -62,10 +61,6 @@ class PostInfo extends Component {
                     </Grid.Column>
                 </Grid.Row>
               </Grid>
-
-
-              
-              
               
               <div className="postDetailBody">
                 <div className="description">
@@ -91,13 +86,6 @@ class PostInfo extends Component {
                   <VotePost post={this.props.post}/>
                 </div>
               </div>
-
-              
-
-              
-{/*               
-              <EditPost post={this.props.post}/>
-              <DeletePost post={this.props.post}/> */}
               <div className="postDetailComment">
               <AddComment post={this.props.post}/>
               </div>
@@ -113,13 +101,13 @@ class PostInfo extends Component {
  
   const mapStateToProps = (state) => {
     return {
-      posts: state.posts
+      posts:  state.posts,
     }
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      loadDetailPost: (postId) => dispatch(loadDetailPost(postId))
+      loadAllPosts: () => dispatch(loadAllPosts())
     }
   }
 

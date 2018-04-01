@@ -33,8 +33,9 @@ class PostList extends Component {
                      { key: '2', value: 'Votes', text: 'Votes' }]
 
     return (
-      
-      <div className="postList">
+    
+    
+    <div className="postList">
       <div className="list">
         <div className="postListHeader">
           <div className="titleDiv">
@@ -56,7 +57,6 @@ const mapStateToProps = (state) => {
   return {
     posts:  state.posts,
     sortType: state.sortType
-
   }
 }
 

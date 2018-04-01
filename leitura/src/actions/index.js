@@ -1,4 +1,5 @@
 import {api, headers, showError} from '../utils/api.js'
+var axios = require('axios');
 
 export const GET_CATEGORIES = 'GET_CATEGORIES'
 export const ADD_POST = 'ADD_POST'
@@ -146,10 +147,10 @@ export const sendDeletePost = (postId) => {
 
 
 
-const getDetailPost = (detailPost) => {
+const getDetailPost = (post) => {
   return {
     type: GET_DETAIL_POST,
-    detailPost
+    post
   }
 }
 export const loadDetailPost = (postId) => {
@@ -158,9 +159,13 @@ export const loadDetailPost = (postId) => {
       .then(res => {
         if (!res.ok) {
           throw res
-        } else  return res.json()
+        } else { 
+          return res.json()
+        }
       })
-    .then(post => dispatch(getDetailPost(post)))
+    .then(post => {
+        dispatch(getDetailPost(post))
+      })
     .catch( error => showError(error));
   }
 }
@@ -200,6 +205,7 @@ export const putEditPost = (postId, post) => {
 
 
 const getCommentPost = (postId, comments) => {
+  console.log("get comments: ", comments)
   return {
     type: GET_COMMENT_POST,
     postId, 
@@ -207,6 +213,7 @@ const getCommentPost = (postId, comments) => {
   }
 }
 export const loadCommentPost = (postId) => {
+  console.log("get comments post: ", postId)
   return dispatch => {
   fetch(`${api}posts/${postId}/comments`, {
     method: 'GET',

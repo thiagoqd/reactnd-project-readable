@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Header, Modal} from 'semantic-ui-react'
+import { Form, Header, Modal, Icon} from 'semantic-ui-react'
 import { loadCategories, putEditPost } from '../actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -41,7 +41,7 @@ class EditPost extends Component {
       
       return (
         <Modal onClose={this.closeModal} open={showModal}  trigger={<div className="popup" onClick={this.openModal}>Edit Post</div>} closeIcon>
-          <Header icon='edit' content='Edit Post' />
+          <Modal.Header> <Icon name='edit'/> Edit Post </Modal.Header>
           <Modal.Content>
             <Form  onSubmit={(e) => this.handleSubmit(e.target)}>
               <Form.Input defaultValue={this.props.post.title} id="title" fluid label='Title' placeholder='Title' />

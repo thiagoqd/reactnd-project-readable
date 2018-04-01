@@ -8,6 +8,7 @@ class CommentList extends Component {
    
 
   componentDidMount() {
+    
     this.props.loadCommentPost(this.props.post.id);
 
 
@@ -15,6 +16,7 @@ class CommentList extends Component {
 
 
   render() {
+    console.log("comments", this.props.post)
     return (
       <div className="commentList">
           {
